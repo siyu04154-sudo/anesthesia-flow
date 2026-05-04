@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>麻醉當天流程｜衛生福利部彰化醫院麻醉科</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap');
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --bg:#F0EEE9;
+  --surface:#FFFFFF;
+  --border:#DEDAD0;
+  --ink:#1C1C1A;
+  --ink-2:#5C5A55;
+  --ink-3:#9E9B93;
+  --c1:#2C6E8A;--c1-l:#E4F2F7;
+  --c2:#3D7A3D;--c2-l:#E6F3E6;
+  --c3:#8A5C2C;--c3-l:#F7F0E4;
+  --c4:#6B3A8A;--c4-l:#F0E8F7;
+  --c5:#2C7A6B;--c5-l:#E4F5F2;
+  --c6:#3D5C8A;--c6-l:#E6ECF7;
+  --r:12px;
+}
+
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans TC',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;}
+
+.site-header{
+  background:var(--surface);border-bottom:1px solid var(--border);
+  padding:14px 20px;display:flex;align-items:center;gap:12px;
+  position:sticky;top:0;z-index:100;box-shadow:0 1px 6px rgba(0,0,0,0.06);
+}
+.header-dot{width:10px;height:10px;border-radius:50%;background:var(--c1);flex-shrink:0;}
+.header-title{font-size:15px;font-weight:700;color:var(--ink);flex:1}
+.header-sub{font-size:11px;color:var(--ink-3);display:block;margin-top:1px}
+.theme-badge{
+  font-size:11px;color:var(--c1);background:var(--c1-l);
+  border:1px solid rgba(44,110,138,.2);border-radius:99px;padding:4px 12px;font-weight:500;
+}
+
+.container{max-width:680px;margin:0 auto;padding:24px 16px 72px}
+
+.hero{
+  display:grid;grid-template-columns:1fr auto;gap:20px;
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:16px;padding:24px;margin-bottom:24px;align-items:center;
+}
+.hero-title{font-size:22px;font-weight:700;color:var(--ink);line-height:1.3;margin-bottom:10px;}
+.hero-desc{font-size:13px;color:var(--ink-2);line-height:1.8}
+
+.timeline{position:relative;padding-left:0}
+.tl-item{display:grid;grid-template-columns:56px 24px 1fr;gap:0 16px;position:relative;}
+.tl-time{
+  text-align:right;padding-top:22px;
+  font-family:'DM Mono',monospace;font-size:11px;color:var(--ink-3);line-height:1.4;
+}
+.tl-time strong{display:block;font-size:12px;color:var(--ink-2);font-weight:500;}
+.tl-node-wrap{display:flex;flex-direction:column;align-items:center;}
+.tl-node{
+  width:24px;height:24px;min-height:24px;border-radius:50%;border:3px solid;
+  background:var(--surface);margin-top:20px;display:flex;align-items:center;
+  justify-content:center;z-index:1;position:relative;flex-shrink:0;transition:transform .2s;
+}
+.tl-item:hover .tl-node{transform:scale(1.15)}
+.tl-line{flex:1;width:2px;background:var(--border);}
+.tl-item:last-child .tl-line{display:none}
+.tl-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--r);
+  margin-bottom:12px;margin-top:12px;overflow:hidden;cursor:pointer;transition:box-shadow .2s;
+}
+.tl-card:hover{box-shadow:0 4px 16px rgba(0,0,0,0.08)}
+.tl-card-header{display:flex;align-items:center;gap:12px;padding:14px 16px;}
+.tl-step-num{font-size:10px;font-family:'DM Mono',monospace;color:var(--ink-3);min-width:28px;}
+.tl-step-title{flex:1;font-size:14px;font-weight:700;color:var(--ink);line-height:1.3;}
+.tl-step-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.tl-step-icon svg{width:16px;height:16px;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.tl-expand-btn{
+  width:20px;height:20px;border-radius:50%;display:flex;align-items:center;
+  justify-content:center;background:var(--bg);flex-shrink:0;transition:transform .3s;
+}
+.tl-expand-btn svg{width:10px;height:10px;stroke:var(--ink-3);fill:none;stroke-width:2.5;stroke-linecap:round}
+.tl-card.open .tl-expand-btn{transform:rotate(180deg)}
+.tl-body{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.4,0,.2,1);}
+.tl-card.open .tl-body{max-height:500px}
+.tl-body-inner{padding:12px 16px 16px;border-top:1px solid var(--bg);}
+.tl-desc{font-size:13px;color:var(--ink-2);line-height:1.85;margin-bottom:10px}
+.tl-checklist{display:flex;flex-direction:column;gap:6px}
+.tl-check-item{display:flex;align-items:flex-start;gap:8px;font-size:12.5px;color:var(--ink-2);line-height:1.5;}
+.tl-check-dot{width:6px;height:6px;min-width:6px;border-radius:50%;margin-top:6px;}
+.tl-note{margin-top:10px;padding:10px 12px;border-radius:8px;font-size:12px;line-height:1.7;}
+
+.site-footer{
+  text-align:center;padding:20px 16px;font-size:11px;color:var(--ink-3);
+  border-top:1px solid var(--border);margin-top:12px;line-height:1.8;
+}
+
+@media(max-width:520px){
+  .tl-item{grid-template-columns:44px 20px 1fr;gap:0 12px}
+  .hero{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-dot"></div>
+  <div style="flex:1">
+    <div class="header-title">麻醉當天流程</div>
+    <span class="header-sub">衛生福利部彰化醫院 麻醉科</span>
+  </div>
+  <span class="theme-badge">主題三</span>
+</header>
+
+<div class="container">
+
+  <div class="hero">
+    <div>
+      <div class="hero-title">手術當天，<br>會發生什麼事？</div>
+      <div class="hero-desc">從報到到回到病房，整個流程分為六個階段。點選每個步驟可展開詳細說明，幫助您提前了解，減少緊張感。</div>
+    </div>
+  </div>
+
+  <div class="timeline">
+
+    <!-- Step 1 -->
+    <div class="tl-item">
+      <div class="tl-time"><strong>報到</strong>入院</div>
+      <div class="tl-node-wrap">
+        <div class="tl-node" style="border-color:var(--c1)"><svg width="10" height="10" viewBox="0 0 10 10" fill="var(--c1)"><circle cx="5" cy="5" r="3"/></svg></div>
+        <div class="tl-line"></div>
+      </div>
+      <div>
+        <div class="tl-card" onclick="toggleTL(this)">
+          <div class="tl-card-header">
+            <div class="tl-step-num">STEP 01</div>
+            <div class="tl-step-icon" style="background:var(--c1-l)">
+              <svg viewBox="0 0 24 24" style="stroke:var(--c1)"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <div class="tl-step-title">報到・核對身份</div>
+            <div class="tl-expand-btn"><svg viewBox="0 0 12 12"><polyline points="2,4 6,8 10,4"/></svg></div>
+          </div>
+          <div class="tl-body"><div class="tl-body-inner">
+            <div class="tl-desc">護理師會核對您的<strong>姓名、出生年月日、手術部位</strong>，並確認禁食時間、過敏史與目前用藥狀況。這是手術安全的第一道關卡，請如實回答。</div>
+            <div class="tl-checklist">
+              <div class="tl-check-item"><div class="tl-check-dot" style="background:var(--c1)"></div>準備好身份證件與就醫資料</div>
+              <div class="tl-check-item"><div class="tl-check-dot" style="background:var(--c1)"></div>告知最後進食時間、目前用藥</div>
+              <div class="tl-check-item"><div class="tl-check-dot" style="background:var(--c1)"></div>確認假牙、飾品、隱形眼鏡已取下</div>
+              <div class="tl-check-item"><div class="tl-check-dot" style="background:var(--c1)"></div>若有不舒服（發燒、腹瀉等）請立刻告知</div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="tl-item">
+      <div class="tl-time"><strong>等候</strong>準備</div>
+      <div class="tl-node-wrap">
+        <div class="tl-node" style="border-color:var(--c2)"><svg width="10" height="10" viewBox="0 0 10 10" fill="var(--c2)"><circle cx="5" cy="5" r="3"/></svg></div>
+        <div class="tl-line"></div>
+      </div>
+      <div>
+        <div class="tl-card" onclick="toggleTL(this)">
+          <div class="tl-card-header">
+            <div class="tl-step-num">STEP 02</div>
+            <div class="tl-step-icon" style="background:var(--c2-l)">
+              <svg viewBox="0 0 24 24" style="stroke:var(--c2)"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div class="tl-step-title">進入手術等候區・更換手術服</div>
+            <div class="tl-expand-btn"><svg viewBox="0 0 12 12"><polyline points="2,4 6,8 10,4"/></svg></div>
+          </div>
+          <div class="tl-body"><div class="tl-body-inner">
+            <div class="tl-desc">護理師會帶您前往手術等候區，更換手術衣。家屬可在指定區域等候，不能一起進入開刀房。等候時間長短視手術前後順序而有所不同，請耐心等待。</div>
+            <div class="tl-checklist">
+              <div class="tl-check-item"><div class="tl-check-dot" style="background:var(--c2)"></div>更換醫院準備的手術衣</div>
+              <div class="tl-check-item"><div class="tl-check-dot" style="background:var(--c2)"></div>貴重物品交由家屬保管</div>
+              <div class="tl-check-item"><div class="tl-check-dot" style="background:var(--c2)"></div>此時若想上廁所請告知護理師</div>
+            </div>
+            <div class="tl-note" style="background:var(--c2-l);color:var(--c2)">等候期間感到緊張是正常的。可以做幾次緩慢深呼吸，若有問題可以隨時詢問護理師。</div>
+          </div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="tl-item">
+      <div class="tl-time"><strong>進入</strong>開刀房</div>
+      <div class="tl-node-wrap">
+        <div class="tl-node" style="border-color:var(--c3)"><svg width="10" height="10" viewBox="0 0 10 10" fill="var(--c3)"><circle cx="5" cy="5" r="3"/></svg></div>
+        <div class="tl-line"></div>
+      </div>
+      <div>
+        <div class="tl-card" onclick="toggleTL(this)">
+          <div class="tl-card-header">
+            <div class="tl-step-num">STEP 03</div>
+            <div class="tl-step-icon" style="background:var(--c3-l)">
+              <svg viewBox="0 0 24 24" style="stroke:var(--c3)"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+            </div>
+            <div class="tl-step-title">進入開刀房・連接監測儀器</div>
+            <div class="tl-expand-btn"><svg viewBox="0 0 12 12"><polyline points="2,4 6,8 10,4"/></svg></div>
+          </div>
+          <div class="tl-body"><div class="tl-body-inner">
+            <div class="tl-desc">進入手術室後，您會躺在手術台上。護理師和麻醉人員會依序進行以下準備，再次確認您的身份與資料後，才開始麻醉。</div>
+            <div class="tl-checklist">
+              <div class="tl-check-item"><div class="tl-check-dot" style="background:var(--c3)"></div>貼上心電圖貼片，持續監測心跳</div>
+              <div class="tl-check-item"><div class="tl-check-dot" style="background:var(--c3)"></div>夾上血氧夾，量測血氧飽和度</div>
+              <div class="tl-check-item"><div class="tl-check-dot" style="background:var(--c3)"></div>套上血壓帶，定時測量血壓</div>
+              <div class="tl-check-item"><div class="tl-check-dot" style="background:var(--c3)"></div>建立靜脈點滴（手背或手臂）</div>
+              <div class="tl-check-item"><div class="tl-check-dot" style="background:var(--c3)"></div>必要時：導尿管、溫毯等依手術需求安置</div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 4 -->
+    <div class="tl-item">
+      <div class="tl-time"><strong>麻醉</strong>誘導</div>
+      <div class="tl-node-wrap">
+        <div class="tl-node" style="border-color:var(--c4)"><svg width="10" height="10" viewBox="0 0 10 10" fill="var(--c4)"><circle cx="5" cy="5" r="3"/></svg></div>
+        <div class="tl-line"></div>
+      </div>
+      <div>
+        <div class="tl-card" onclick="toggleTL(this)">
+          <div class="tl-card-header">
+            <div class="tl-step-num">STEP 04</div>
+            <div class="tl-step-icon" style="background:var(--c4-l)">
+              <svg viewBox="0 0 24 24" style="stroke:var(--c4)"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M8 12s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+            </div>
+            <div class="tl-step-title">開始麻醉・慢慢入睡</div>
+            <div class="tl-expand-btn"><svg viewBox="0 0 12 12"><polyline points="2,4 6,8 10,4"/></svg></div>
+          </div>
+          <div class="tl-body"><div class="tl-body-inner">
+            <div class="tl-desc">麻醉醫師會先請您<strong>戴上氧氣面罩深呼吸</strong>，接著透過點滴注射麻醉誘導藥物。您會感覺<strong>頭暈、眼皮沉重</strong>，在數十秒內自然入睡。</div>
+            <div class="tl-checklist">
+              <div class="tl-check-item"><div class="tl-check-dot" style="background:var(--c4)"></div>依指示深呼吸並放鬆，不需要緊張</div>
+              <div class="tl-check-item"><div class="tl-check-dot" style="background:var(--c4)"></div>入睡後，醫師會建立呼吸道管路</div>
+              <div class="tl-check-item"><div class="tl-check-dot" style="background:var(--c4)"></div>麻醉醫師全程在旁監測，不會離開</div>
+            </div>
+            <div class="tl-note" style="background:var(--c4-l);color:var(--c4)">放鬆身體、自然呼吸就好，麻醉藥會自然讓您入睡。</div>
+          </div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 5 -->
+    <div class="tl-item">
+      <div class="tl-time"><strong>手術</strong>進行</div>
+      <div class="tl-node-wrap">
+        <div class="tl-node" style="border-color:var(--c4)"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="3" fill="none" stroke="var(--c4)" stroke-width="1.5" stroke-dasharray="2 1"/></svg></div>
+        <div class="tl-line"></div>
+      </div>
+      <div>
+        <div class="tl-card" onclick="toggleTL(this)">
+          <div class="tl-card-header">
+            <div class="tl-step-num">STEP 05</div>
+            <div class="tl-step-icon" style="background:var(--c4-l)">
+              <svg viewBox="0 0 24 24" style="stroke:var(--c4)"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <div class="tl-step-title">手術進行中（您在睡覺）</div>
+            <div class="tl-expand-btn"><svg viewBox="0 0 12 12"><polyline points="2,4 6,8 10,4"/></svg></div>
+          </div>
+          <div class="tl-body"><div class="tl-body-inner">
+            <div class="tl-desc">您會完全睡著、感覺不到任何疼痛，也不會記得手術過程。<strong>麻醉醫師全程守在旁邊</strong>，持續監測並調整所有參數，確保您的安全。</div>
+            <div class="tl-checklist">
+              <div class="tl-check-item"><div class="tl-check-dot" style="background:var(--c4)"></div>持續監測：心跳、血壓、血氧、呼吸、體溫</div>
+              <div class="tl-check-item"><div class="tl-check-dot" style="background:var(--c4)"></div>依需要調整麻醉深度與止痛藥</div>
+              <div class="tl-check-item"><div class="tl-check-dot" style="background:var(--c4)"></div>補充輸液，維持血壓穩定</div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 6 -->
+    <div class="tl-item">
+      <div class="tl-time"><strong>恢復</strong>病房</div>
+      <div class="tl-node-wrap">
+        <div class="tl-node" style="border-color:var(--c5)"><svg width="10" height="10" viewBox="0 0 10 10" fill="var(--c5)"><circle cx="5" cy="5" r="3"/></svg></div>
+        <div class="tl-line" style="display:none"></div>
+      </div>
+      <div>
+        <div class="tl-card" onclick="toggleTL(this)">
+          <div class="tl-card-header">
+            <div class="tl-step-num">STEP 06</div>
+            <div class="tl-step-icon" style="background:var(--c5-l)">
+              <svg viewBox="0 0 24 24" style="stroke:var(--c5)"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+            </div>
+            <div class="tl-step-title">醒來・恢復室 → 回病房</div>
+            <div class="tl-expand-btn"><svg viewBox="0 0 12 12"><polyline points="2,4 6,8 10,4"/></svg></div>
+          </div>
+          <div class="tl-body"><div class="tl-body-inner">
+            <div class="tl-desc">手術結束後，您會被推到<strong>恢復室（PACU）</strong>。等血壓、心跳、血氧穩定，且疼痛與噁心感受在可控範圍後，才會安排回病房。</div>
+            <div class="tl-checklist">
+              <div class="tl-check-item"><div class="tl-check-dot" style="background:var(--c5)"></div>清醒時可能感到迷糊、想睡，這是正常的</div>
+              <div class="tl-check-item"><div class="tl-check-dot" style="background:var(--c5)"></div>有任何不舒服請立刻告訴護理師</div>
+              <div class="tl-check-item"><div class="tl-check-dot" style="background:var(--c5)"></div>未經許可請勿自行下床</div>
+              <div class="tl-check-item"><div class="tl-check-dot" style="background:var(--c5)"></div>依醫囑從少量清水開始，再慢慢進食</div>
+            </div>
+            <div class="tl-note" style="background:var(--c5-l);color:var(--c5)">恢復室停留時間因人而異（通常 30 分鐘至數小時），護理師隨時都在旁邊照顧您。</div>
+          </div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer class="site-footer">
+  衛生福利部彰化醫院 麻醉科｜本衛教資料僅供參考，實際醫療指示請依醫護人員說明為準<br>
+  如有任何疑問，請於門診或住院時洽詢麻醉科醫護人員
+</footer>
+
+<script>
+function toggleTL(card){ card.classList.toggle('open'); }
+</script>
+</body>
+</html>
